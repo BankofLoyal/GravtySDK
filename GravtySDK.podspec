@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GravtySDK"
-  s.version      = "1.5.2"
+  s.version      = "1.5.4"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
   s.dependency 'Moya'
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   objects and returned in the completion handlers. 
   EOS
 
-  s.homepage     = "https://github.com/sandeepbol/GravtySDK"
+  s.homepage     = "https://github.com/BankofLoyal/GravtySDK"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -88,7 +88,7 @@ Pod::Spec.new do |s|
   #
 
   # s.source       = { :path => '.' }
-  s.source       = { :http => "https://github.com/sandeepbol/GravtySDK/raw/master/GravtySDK.zip"}
+  s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/master/GravtySDK.zip"}
 
   # { :git => "https://github.com/BankofLoyal/gravty-iOS-sdk.git", :tag => "#{s.version}" }
 
