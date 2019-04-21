@@ -17,13 +17,15 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GravtySDK"
-  s.version      = "1.5.16"
+  s.version      = "1.5.18"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
   s.dependency 'Moya'
   s.dependency 'Moya-SwiftyJSONMapper', '~> 3.0.0'
   s.dependency 'RealmSwift'
   s.dependency 'SwiftyJSON', '~> 4.2.0'
+  s.dependency 'JWTDecode', '~> 2.2'
+  s.dependency 'SwiftKeychainWrapper'
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
