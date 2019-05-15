@@ -17,14 +17,13 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GravtySDK"
-  s.version      = "1.5.20"
+  s.version      = "1.6.0"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
   s.dependency 'Moya'
-  s.dependency 'Moya-SwiftyJSONMapper', '~> 3.0.0'
   s.dependency 'RealmSwift'
-  s.dependency 'SwiftyJSON', '~> 4.2.0'
-  s.dependency 'JWTDecode', '~> 2.2'
+  s.dependency 'SwiftyJSON'
+  s.dependency 'JWTDecode'
   s.dependency 'SwiftKeychainWrapper'
 
   # This description is used to generate tags and improve search results.
@@ -78,7 +77,7 @@ Pod::Spec.new do |s|
   # s.platform     = :ios, "10.3"
 
   #  When using multiple platforms
-  s.ios.deployment_target = "9.0"
+  s.ios.deployment_target = "10.0"
   # s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
@@ -123,6 +122,6 @@ Pod::Spec.new do |s|
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
-  s.swift_version = '4.2'  
+  s.swift_version = '5.0'  
   s.ios.vendored_frameworks = 'GravtySDK.framework'
 end
