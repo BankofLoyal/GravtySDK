@@ -124,5 +124,5 @@ Pod::Spec.new do |s|
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
   s.swift_version = '5.0'  
-  s.ios.vendored_frameworks = 'GravtySDK/GravtySDK.framework'
+  s.vendored_frameworks = 'GravtySDK.framework'
 end
