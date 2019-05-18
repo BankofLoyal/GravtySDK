@@ -17,9 +17,10 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GravtySDK"
-  s.version      = "1.6.0"
+  s.version      = "1.6.1"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
+  s.dependency 'Moya-SwiftyJSONMapper'
   s.dependency 'Moya'
   s.dependency 'RealmSwift'
   s.dependency 'SwiftyJSON'
@@ -123,5 +124,5 @@ Pod::Spec.new do |s|
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
   s.swift_version = '5.0'  
-  s.ios.vendored_frameworks = 'GravtySDK.framework'
+  s.ios.vendored_frameworks = 'GravtySDK/GravtySDK.framework'
 end
