@@ -14,7 +14,7 @@ jobs:
       - run: bundle install
       - run:
           name: Lint Podspec
-          command: pod spec lint --verbose
+          command: pod lib lint --verbose
       - run:
           name: Push Podspec
           command: pod trunk push GravtySDK.podspec
