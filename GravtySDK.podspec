@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GravtySDK"
-  s.version      = "1.6.11"
+  s.version      = "1.6.12"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
   s.dependency 'Moya-SwiftyJSONMapper'
