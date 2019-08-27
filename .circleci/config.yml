@@ -12,9 +12,9 @@ jobs:
     steps:
       - checkout
       - run: bundle install
-      # - run:
-      #     name: Lint Podspec
-      #     command: pod spec lint --verbose --allow-warnings
+      - run:
+          name: Lint Podspec
+          command: pod spec lint --verbose --allow-warnings
       - run:
           name: Push Podspec
           command: pod trunk push GravtySDK.podspec
