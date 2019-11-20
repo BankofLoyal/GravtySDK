@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "GravtySDK"
-  s.version      = "1.8.23"
+  s.version      = "1.8.24"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
   s.dependency 'Moya-SwiftyJSONMapper'
@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #
 
   # s.source       = { :path => '.' }
-  s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/master/GravtySDK.zip"}
+  s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/#{s.version}/GravtySDK.zip"}
 
   # { :git => "https://github.com/BankofLoyal/gravty-iOS-sdk.git", :tag => "#{s.version}" }
 
