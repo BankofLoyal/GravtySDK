@@ -18,14 +18,19 @@ Pod::Spec.new do |s|
 
   s.name         = "GravtySDK"
 
-  s.version      = "3.2.1"
+  s.version      = "3.2.3"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
   s.dependency 'Moya-SwiftyJSONMapper'
   s.dependency 'Moya'
-  s.dependency 'RealmSwift', '5.3.5'
+  s.dependency 'RealmSwift', '5.4.8'
   s.dependency 'SwiftyJSON'
   s.dependency 'SwiftKeychainWrapper'
+
+  s.pod_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
