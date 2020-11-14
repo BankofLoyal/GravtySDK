@@ -3,7 +3,7 @@ jobs:
 
   deploy:
     macos:
-      xcode: "12.0.0"
+      xcode: "12.1.1"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
@@ -11,10 +11,6 @@ jobs:
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
-      - run: 
-          name: Set Ruby Version
-          command:  echo "ruby-2.6.6" > ~/.ruby-version
-      - run: gem install bundler --user-install && bundle update
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - run: bundle check || bundle install --path vendor/bundle
@@ -22,11 +18,6 @@ jobs:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-      - run: bundle install
-      # - run: bundle install
-      # - run:
-      #    name: Retrieve cached cocoapods specs
-      #    command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run:
           name: Lint Podspec
           command: pod spec lint --verbose --allow-warnings
