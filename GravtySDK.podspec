@@ -18,12 +18,12 @@ Pod::Spec.new do |s|
 
   s.name         = "GravtySDK"
 
-  s.version      = "3.2.4"
+  s.version      = "3.3.1"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
   s.dependency 'Moya-SwiftyJSONMapper'
   s.dependency 'Moya'
-  s.dependency 'RealmSwift', '5.4.8'
+  s.dependency 'RealmSwift', '10.1.3'
   s.dependency 'SwiftyJSON'
   s.dependency 'SwiftKeychainWrapper'
 
@@ -80,7 +80,6 @@ Pod::Spec.new do |s|
   #
 
   s.platform     = :ios
-  # s.platform     = :ios, "10.3"
 
   #  When using multiple platforms
   s.ios.deployment_target = "9.0"
@@ -98,7 +97,7 @@ Pod::Spec.new do |s|
   # s.source       = { :path => '.' }
   s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/#{s.version}/GravtySDK.zip"}
 
-  # { :git => "https://github.com/BankofLoyal/gravty-iOS-sdk.git", :tag => "#{s.version}" }
+  # s.source       = { :git => "git@github.com:BankofLoyal/gravty-iOS-sdk.git", :tag => "Gravty-iOS-SDK-#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -109,7 +108,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  # s.source_files  = "GravtySDK", "GravtySDK/**/*.{h,m}"
+  # s.source_files  = "GravtySDK/*.swift"
+  # , "GravtySDK/**/*.{h,m}"
   # s.exclude_files = "GravtySDK/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -124,10 +124,10 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
+  # s.resources = "GravtySDK/*.cer"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
   s.swift_version = '5.3'  
-  s.vendored_frameworks = 'GravtySDK.framework'
+  s.vendored_frameworks = 'GravtySDK.xcframework'
 end
