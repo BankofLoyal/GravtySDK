@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.name         = "GravtySDK"
 
-  s.version      = "4.0.1"
+  s.version      = "4.0.2"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
   s.dependency 'Moya', '14.0.0'
@@ -104,8 +104,8 @@ Pod::Spec.new do |s|
   # s.source       = { :path => '/Users/josh/dev/iOSprojects/gravty-iOS-sdk/build/GravtySDK.xcframework' }
   # s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/#{s.version}/GravtySDK.zip"}
 
-  s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/#{s.version}/GravtySDK.xcframework"}
-
+  # s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/#{s.version}/GravtySDK.xcframework"}
+  s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK.git", :tag => "#{s.version}"}
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
