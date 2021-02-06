@@ -18,10 +18,10 @@ Pod::Spec.new do |s|
 
   s.name         = "GravtySDK"
 
-  s.version      = "4.0.0"
+  s.version      = "4.0.1"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
-  s.dependency 'Moya', '-> 14.0.0'
+  s.dependency 'Moya', '14.0.0'
   s.dependency 'Unrealm', '1.9.0'
   s.dependency 'SwiftKeychainWrapper', '4.0.1'
 
@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   # s.platform     = :ios, "10.3"
 
   #  When using multiple platforms
-  s.ios.deployment_target = "10.0"
+  s.ios.deployment_target = "12.0"
   # s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
