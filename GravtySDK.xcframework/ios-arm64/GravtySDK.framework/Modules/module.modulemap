@@ -1,0 +1,11 @@
+framework module GravtySDK {
+  umbrella header "GravtySDK.h"
+
+  export *
+  module * { export * }
+}
+
+module GravtySDK.Swift {
+    header "GravtySDK-Swift.h"
+    requires objc
+}

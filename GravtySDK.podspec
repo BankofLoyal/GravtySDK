@@ -18,19 +18,25 @@ Pod::Spec.new do |s|
 
   s.name         = "GravtySDK"
 
-  s.version      = "3.3.1"
+  s.version      = "4.0.0"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
-  s.dependency 'Moya-SwiftyJSONMapper'
-  s.dependency 'Moya'
-  s.dependency 'RealmSwift', '10.1.3'
-  s.dependency 'SwiftyJSON'
-  s.dependency 'SwiftKeychainWrapper'
+  s.dependency 'Moya', '-> 14.0.0'
+  s.dependency 'Unrealm', '1.9.0'
+  s.dependency 'SwiftKeychainWrapper', '4.0.1'
 
   s.pod_target_xcconfig = {
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+    'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES'
   }
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  # s.dependency_target_xcconfig = {
+  #   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+  #   'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES'
+  # }
+  s.user_target_xcconfig = { 
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+    'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES'
+  }
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -80,9 +86,10 @@ Pod::Spec.new do |s|
   #
 
   s.platform     = :ios
+  # s.platform     = :ios, "10.3"
 
   #  When using multiple platforms
-  s.ios.deployment_target = "9.0"
+  s.ios.deployment_target = "10.0"
   # s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
@@ -94,10 +101,10 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  # s.source       = { :path => '.' }
-  s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/#{s.version}/GravtySDK.zip"}
+  # s.source       = { :path => '/Users/josh/dev/iOSprojects/gravty-iOS-sdk/build/GravtySDK.xcframework' }
+  # s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/#{s.version}/GravtySDK.zip"}
 
-  # s.source       = { :git => "git@github.com:BankofLoyal/gravty-iOS-sdk.git", :tag => "Gravty-iOS-SDK-#{s.version}" }
+  s.source       = { :http => "https://github.com/BankofLoyal/GravtySDK/raw/#{s.version}/GravtySDK.xcframework"}
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -108,7 +115,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  # s.source_files  = "GravtySDK/*.swift"
+  # s.source_files  = "Sources/**/*.swift"
   # , "GravtySDK/**/*.{h,m}"
   # s.exclude_files = "GravtySDK/Exclude"
 
@@ -124,7 +131,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  # s.resources = "GravtySDK/*.cer"
+  # s.resources = "Sources/GravtySDK/Resources/*.cer"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
