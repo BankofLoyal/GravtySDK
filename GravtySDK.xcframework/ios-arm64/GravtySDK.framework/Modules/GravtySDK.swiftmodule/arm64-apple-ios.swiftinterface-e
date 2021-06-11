@@ -584,7 +584,7 @@ public struct GravtyErrorResponse : Swift.Codable, Swift.Error {
   public var code: Swift.String?
   public var type: Swift.String?
   public var statusCode: Swift.Int?
-  public var data: [Swift.String : AnyCodable?]?
+  public var data: [Swift.String : AnyCodable.AnyCodable?]?
   public init(message: Swift.String?, code: Swift.String?)
   public init(field: Swift.String?, unsafeDictionary: GravtySDK.OptionalDictionary)
   public init(unsafeDictionary: GravtySDK.OptionalDictionary)
