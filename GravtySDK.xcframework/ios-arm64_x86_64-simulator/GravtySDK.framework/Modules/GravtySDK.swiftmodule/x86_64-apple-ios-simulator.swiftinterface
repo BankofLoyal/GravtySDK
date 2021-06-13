@@ -606,6 +606,7 @@ extension GravtyError {
     case incorrectCode
     case passwordTooShort
     case passwordInvalid
+    case codeExpired
     public init?(rawValue: Swift.String)
     public typealias AllCases = [GravtySDK.GravtyError.ResetPasswordErrorCode]
     public typealias RawValue = Swift.String
@@ -791,7 +792,7 @@ public struct Privilege : Swift.Decodable {
   @discardableResult
   public static func getMemberDetails(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberDetails>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
-  public static func getMemberBalances(token: Swift.String?, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberBalance]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberBalances(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberBalance]>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
   public static func getPointBalance(token: Swift.String? = nil, memberID: Swift.String, accountID: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.PendingPointBalance>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
@@ -819,7 +820,7 @@ public struct Privilege : Swift.Decodable {
   @discardableResult
   public static func sendOtp(token: Swift.String? = nil, loginAttribute: Swift.String, username: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
-  public static func getMemberCards(token: Swift.String?, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.CardDetails]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberCards(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.CardDetails]>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
   public static func addMemberCard(token: Swift.String? = nil, addRequest: GravtySDK.CardAddRequest, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.CardDetails>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
@@ -883,7 +884,7 @@ public struct Privilege : Swift.Decodable {
   @discardableResult
   public static func verifyMerchantPin(token: Swift.String? = nil, sponsorId: Swift.Int, pin: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
-  public static func getLoginAttribute(token: Swift.String?, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.LoginAttribute>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getLoginAttribute(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.LoginAttribute>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
   public static func getLookUps(token: Swift.String? = nil, for type: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.LookUp]>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
