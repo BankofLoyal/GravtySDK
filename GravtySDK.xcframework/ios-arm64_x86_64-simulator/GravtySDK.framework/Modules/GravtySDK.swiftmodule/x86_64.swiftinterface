@@ -80,6 +80,7 @@ public struct Sponsor : Swift.Decodable {
   public var name: Swift.String?
   public var shortName: Swift.String?
   public var brandName: Swift.String?
+  public var rank: Swift.Int?
   public var isHost: Swift.Bool
   public var businessDescription: Swift.String?
   public var address: Swift.String?
@@ -190,12 +191,14 @@ public struct Offer : Swift.Decodable {
   public var extraData: GravtySDK.ExtraData?
   public var termAndCondition: Swift.String?
   public var offerDistance: Swift.Double
+  public var featuredRank: Swift.Int?
   public var tags: [Swift.String]
   public init()
   public init(from decoder: Swift.Decoder) throws
 }
 public struct LocationOffer : Swift.Decodable {
   public var id: Swift.Int
+  public var status: Swift.String?
   public var startDateString: Swift.String?
   public var startDate: Foundation.Date
   public var endDateString: Swift.String?
@@ -1258,14 +1261,14 @@ public struct CategoryStatistics : Swift.Decodable {
 public struct OfferDetails {
 }
 public struct OfferParams : Swift.Decodable {
-  public var startHour: Swift.Int
-  public var startMinute: Swift.Int
-  public var endHour: Swift.Int
-  public var endMinute: Swift.Int
+  public var startHour: Swift.String?
+  public var startMinute: Swift.String?
+  public var endHour: Swift.String?
+  public var endMinute: Swift.String?
   public var rewardType: Swift.String?
   public var rewardValue: Swift.String?
-  public var rewardMultiplier: Swift.Int
-  public var rewardBonus: Swift.Int
+  public var rewardMultiplier: Swift.String?
+  public var rewardBonus: Swift.String?
   public var offerId: Swift.Int
   public init()
   public init(from decoder: Swift.Decoder) throws
