@@ -1214,6 +1214,7 @@ extension NSDate : GravtySDK.WrappableDate {
 public struct Promotion : Swift.Decodable {
   public var memberId: Swift.String?
   public var usageDate: Foundation.Date?
+  public var createdOn: Swift.String?
   public var endDate: Swift.String?
   public var status: Swift.String?
   public var privilegeCode: Swift.String
