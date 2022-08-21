@@ -18,13 +18,13 @@ Pod::Spec.new do |s|
 
   s.name         = "GravtySDK"
 
-  s.version      = "4.0.10"
+  s.version      = "4.1.1"
   s.summary      = "Swift SDK for integration with Gravty Loyalty management system"
 
   s.dependency 'Moya', '15.0.0'
-  s.dependency 'Unrealm', '1.9.3'
+  s.dependency 'Unrealm', '1.9.4'
   s.dependency 'SwiftKeychainWrapper', '4.0.1'
-  s.dependency 'AnyCodable-FlightSchool', '0.6.2'
+  s.dependency 'AnyCodable-FlightSchool', '0.6.5'
 
   s.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
@@ -132,6 +132,6 @@ Pod::Spec.new do |s|
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
-  s.swift_version = '5.5'  
+  s.swift_version = '5.6'  
   s.vendored_frameworks = 'GravtySDK.xcframework'
 end
