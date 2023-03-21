@@ -494,7 +494,7 @@ public struct Country : Swift.Codable {
   @objc deinit
 }
 public struct UploadReceiptRequest : Swift.Codable {
-  public init(receipt_number: Swift.String?, sponsor: Swift.Int, destination: Swift.String?, location: Swift.String?, transaction_date: Swift.String?, transaction_amount: Swift.Double?, receipt_image_urls: [Swift.String]?, member: Swift.String)
+  public init(receipt_number: Swift.String?, sponsor: Swift.Int, destination: Swift.String?, location: Swift.String?, transaction_date: Swift.String?, transaction_amount: Swift.Double?, receipt_image_urls: [Swift.String]?, currency: Swift.String?, member: Swift.String)
   public func encode(to encoder: Swift.Encoder) throws
   public init(from decoder: Swift.Decoder) throws
 }
@@ -1147,6 +1147,8 @@ public struct MemberDetailsConcise : Swift.Codable {
   @discardableResult
   public static func getAllLookUps(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.LookUp]>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
+  public static func getBalanceTagNames(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.BalanceTag]>) -> Swift.Void) -> Moya.Cancellable?
+  @discardableResult
   public static func getRegion(token: Swift.String? = nil, country: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Region]>) -> Swift.Void) -> Moya.Cancellable?
   @discardableResult
   public static func fetchRegion(token: Swift.String? = nil, countryCode: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Region]>) -> Swift.Void) -> Moya.Cancellable?
@@ -1349,10 +1351,12 @@ public struct BitResponse : Swift.Decodable {
   public var assignedPrivileges: [GravtySDK.Privilege]
   public var availedPrivileges: [GravtySDK.Privilege]
   public var loyaltyAccounts: [GravtySDK.LoyaltyBalance]
+  public var mtoMap: AnyCodable.AnyCodable?
   public var processingDate: Swift.String?
   public var bitId: Swift.String?
   public var pointsRewarded: Swift.Bool?
   public var pointsRedeemed: Swift.Bool?
+  public var status: Swift.String?
   public init(from decoder: Swift.Decoder) throws
 }
 public struct CardRequestResponse : Swift.Decodable {
@@ -1369,6 +1373,23 @@ public struct FamilySummary : Swift.Decodable {
   public var size: Swift.Int
   public var head: Swift.String?
   public init(from decoder: Swift.Decoder) throws
+}
+public struct BalanceTag : Swift.Codable {
+  public var id: Swift.Int?
+  public var name: Swift.String?
+  public var code: Swift.String?
+  public var expirationLevel: Swift.String?
+  public var expirationUnit: Swift.String?
+  public var expirationDate: Swift.String?
+  public var expirationPeriod: Swift.String?
+  public var active: Swift.String?
+  public var onOccasion: Swift.String?
+  public var prepaidBillingRate: Swift.Float?
+  public var postpaidBillingRate: Swift.Float?
+  public var loyaltyAccount: Swift.Int?
+  public init()
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
 }
 @_hasMissingDesignatedInitializers @available(*, unavailable, renamed: "LocationCompact")
 public class Location {
