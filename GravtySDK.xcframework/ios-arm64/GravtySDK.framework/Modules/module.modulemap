@@ -6,6 +6,6 @@ framework module GravtySDK {
 }
 
 module GravtySDK.Swift {
-    header "GravtySDK-Swift.h"
-    requires objc
+  header "GravtySDK-Swift.h"
+  requires objc
 }

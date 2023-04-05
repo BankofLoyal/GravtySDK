@@ -22,7 +22,7 @@
 		</data>
 		<key>Headers/GravtySDK-Swift.h</key>
 		<data>
-		M7InQM6uiCOZtbFo4pdprscJTtc=
+		IS/UiZUNaUDhSTqb+rLyOzpixEs=
 		</data>
 		<key>Headers/GravtySDK.h</key>
 		<data>
@@ -30,35 +30,51 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		GIotAcognICyJm4IaYzLN8hKoEM=
+		JtApv0m3KY8qWCSEIs816HP6P6w=
+		</data>
+		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<data>
+		ycgv67ahf5lEMl2UwEtcPeucL3s=
+		</data>
+		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		nbb62OuZzquZ4CG3cxEjCmbC+jM=
 		</data>
 		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		+5xpEoRTvsPobDWm6EHF2Q/FeV0=
+		AXUe3Vb+HpWPoSUQM/yx/SxHTuc=
 		</data>
 		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		H7s8ecMmpI7+xy88QAGoKzirVt4=
+		nbb62OuZzquZ4CG3cxEjCmbC+jM=
 		</data>
 		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		44/hgbZyegyCK1ZtsnuRUiDMY2A=
+		QwWah5JjoQMwLKh8dbjD/H5/ibI=
+		</data>
+		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
+		<data>
+		ycgv67ahf5lEMl2UwEtcPeucL3s=
+		</data>
+		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		i95sg1OBkCEdSJXSRLoBAM5u+34=
 		</data>
 		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		PiMHZQX1Sim7761Schr8TvJQ1nw=
+		fdCsY44hgt0qxPbOkaPDMEakiII=
 		</data>
 		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		Mmch7TR8SkezCzWZq1/uTVeWObs=
+		i95sg1OBkCEdSJXSRLoBAM5u+34=
 		</data>
 		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		PLrCRdFDDBXzBiVqJZW6hHjTo6k=
+		vxgqSlqXcmHvWJa6gyskzEFwzLw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		QugRx/XxPrEUumMXBYb5s9Wjogw=
+		B+uxhBHZkkuvzM9tY6TDhYOuV/4=
 		</data>
 		<key>SFSRootCAG2.cer</key>
 		<data>
@@ -99,7 +115,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GI01SF1hPrI8aCDPkVUYD420Jh4jeMAaF2C+fnch/Gw=
+			4srHGJPepRYFDR307FT0btKJIueGkwdWcqeUi1UTH0g=
 			</data>
 		</dict>
 		<key>Headers/GravtySDK.h</key>
@@ -109,53 +125,81 @@
 			aM5JJGbkW9aFea3sVEzhulaYvu6cQe4uDQ/aj/V7tqc=
 			</data>
 		</dict>
+		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DfPp3XBtQfi93gv2Bj1Tehi/NrBhQRhF2HkRs+s+L6w=
+			</data>
+		</dict>
+		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			kn4I1d2sOzvMAaeEGaS/dN+RtHAstDPO5qYdLIC6pCU=
+			</data>
+		</dict>
 		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FT3WAPb/QuQQFshCk2Z70Sj4Ie68+io2jiRxHO2J4to=
+			0KQ34OjQuoVLYNEg1sBS2QaL0WXTznH5wkUKoRaicg0=
 			</data>
 		</dict>
 		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			S+LhOOy415eh9hNiak0bTicIiESmD186Bgxa++R5rz4=
+			kn4I1d2sOzvMAaeEGaS/dN+RtHAstDPO5qYdLIC6pCU=
 			</data>
 		</dict>
 		<key>Modules/GravtySDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LhCOcK89iRNS3/NGedyQig1+RbxLWwGyatVFOfaeGt4=
+			+k73+uXV+Aj7Ndkd9DXrWYuTB3Jx4TK2EtIxOYoKDSA=
+			</data>
+		</dict>
+		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			DfPp3XBtQfi93gv2Bj1Tehi/NrBhQRhF2HkRs+s+L6w=
+			</data>
+		</dict>
+		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			K28xBwLKayyqiv0IDQd55XoEvSBalaIkMx2DcLy3ivY=
 			</data>
 		</dict>
 		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1jAJp5rQXkHkxw612gAvdfHzl1rFwGnuOwUSCJe56P4=
+			qnXDkno2zEViMxmaI+lEMYKhwgVyWOPVd9v8Xh1w2kQ=
 			</data>
 		</dict>
 		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			l4NlO5o+/2otnCSTwRyzQv+p4WgwArAjJ5Y7zU3QCPE=
+			K28xBwLKayyqiv0IDQd55XoEvSBalaIkMx2DcLy3ivY=
 			</data>
 		</dict>
 		<key>Modules/GravtySDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0U7Ge7xCoT3Rl8DrX9M9/plI/jNQVB6g0X66dclJYic=
+			wUsLcivf14gK6p4vCXCHz9JPs1NH6mplHj/WAi1auVw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			O7/zY+EiXEnwbNrrxzjPAyyo/kD6iMBmnklG4VrHjak=
+			6Vy9ZfvFbwPoqzU4v4QxIKMwmTpdh7IqD61jRvE49eo=
 			</data>
 		</dict>
 		<key>SFSRootCAG2.cer</key>
