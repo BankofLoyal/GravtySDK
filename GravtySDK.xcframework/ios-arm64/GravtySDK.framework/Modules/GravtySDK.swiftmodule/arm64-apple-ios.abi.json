@@ -86846,22 +86846,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
               }
             ],
             "declKind": "Var",
-            "usr": "s:9GravtySDK9PromotionV11productCostSSSgvp",
-            "mangledName": "$s9GravtySDK9PromotionV11productCostSSSgvp",
+            "usr": "s:9GravtySDK9PromotionV11productCostSdvp",
+            "mangledName": "$s9GravtySDK9PromotionV11productCostSdvp",
             "moduleName": "GravtySDK",
             "declAttributes": [
               "HasInitialValue",
@@ -86877,22 +86869,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
+                    "name": "Double",
+                    "printedName": "Swift.Double",
+                    "usr": "s:Sd"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:9GravtySDK9PromotionV11productCostSSSgvg",
-                "mangledName": "$s9GravtySDK9PromotionV11productCostSSSgvg",
+                "usr": "s:9GravtySDK9PromotionV11productCostSdvg",
+                "mangledName": "$s9GravtySDK9PromotionV11productCostSdvg",
                 "moduleName": "GravtySDK",
                 "implicit": true,
                 "accessorKind": "get"
@@ -86909,22 +86893,14 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
+                    "name": "Double",
+                    "printedName": "Swift.Double",
+                    "usr": "s:Sd"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:9GravtySDK9PromotionV11productCostSSSgvs",
-                "mangledName": "$s9GravtySDK9PromotionV11productCostSSSgvs",
+                "usr": "s:9GravtySDK9PromotionV11productCostSdvs",
+                "mangledName": "$s9GravtySDK9PromotionV11productCostSdvs",
                 "moduleName": "GravtySDK",
                 "implicit": true,
                 "accessorKind": "set"
@@ -86941,8 +86917,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:9GravtySDK9PromotionV11productCostSSSgvM",
-                "mangledName": "$s9GravtySDK9PromotionV11productCostSSSgvM",
+                "usr": "s:9GravtySDK9PromotionV11productCostSdvM",
+                "mangledName": "$s9GravtySDK9PromotionV11productCostSdvM",
                 "moduleName": "GravtySDK",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -107990,175 +107966,182 @@
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "IntegerLiteral",
-      "offset": 1361,
+      "offset": 1332,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "IntegerLiteral",
-      "offset": 1395,
+      "offset": 1364,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1398,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "BooleanLiteral",
-      "offset": 1557,
+      "offset": 1560,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 1939,
+      "offset": 1942,
       "length": 10,
       "value": "\"memberID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2205,
+      "offset": 2208,
       "length": 11,
       "value": "\"productID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2384,
+      "offset": 2387,
       "length": 7,
       "value": "\"bitID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2422,
+      "offset": 2425,
       "length": 16,
       "value": "\"availmentBitID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2553,
+      "offset": 2556,
       "length": 9,
       "value": "\"offerID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2588,
+      "offset": 2591,
       "length": 11,
       "value": "\"sponsorID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2656,
+      "offset": 2659,
       "length": 21,
       "value": "\"offer_desktop_image\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2710,
+      "offset": 2713,
       "length": 20,
       "value": "\"offer_mobile_image\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2757,
+      "offset": 2760,
       "length": 21,
       "value": "\"isExternalPrivilege\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2871,
+      "offset": 2874,
       "length": 26,
       "value": "\"externalPrivilegeService\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2930,
+      "offset": 2933,
       "length": 27,
       "value": "\"externalPrivilegeResponse\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 1939,
+      "offset": 1942,
       "length": 10,
       "value": "\"memberID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2205,
+      "offset": 2208,
       "length": 11,
       "value": "\"productID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2384,
+      "offset": 2387,
       "length": 7,
       "value": "\"bitID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2422,
+      "offset": 2425,
       "length": 16,
       "value": "\"availmentBitID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2553,
+      "offset": 2556,
       "length": 9,
       "value": "\"offerID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2588,
+      "offset": 2591,
       "length": 11,
       "value": "\"sponsorID\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2656,
+      "offset": 2659,
       "length": 21,
       "value": "\"offer_desktop_image\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2710,
+      "offset": 2713,
       "length": 20,
       "value": "\"offer_mobile_image\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2757,
+      "offset": 2760,
       "length": 21,
       "value": "\"isExternalPrivilege\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2871,
+      "offset": 2874,
       "length": 26,
       "value": "\"externalPrivilegeService\""
     },
     {
       "filePath": "\/Users\/distiller\/project\/Sources\/GravtySDK\/Models\/Promotion.swift",
       "kind": "StringLiteral",
-      "offset": 2930,
+      "offset": 2933,
       "length": 27,
       "value": "\"externalPrivilegeResponse\""
     },

@@ -1595,7 +1595,7 @@ public struct Promotion : Swift.Decodable {
   public var offerTitle: Swift.String?
   public var value: Swift.Double
   public var offerType: Swift.String?
-  public var productCost: Swift.String?
+  public var productCost: Swift.Double
   public var offerId: Swift.Int
   public var sponsorId: Swift.Int
   public var offerDesc: Swift.String?
