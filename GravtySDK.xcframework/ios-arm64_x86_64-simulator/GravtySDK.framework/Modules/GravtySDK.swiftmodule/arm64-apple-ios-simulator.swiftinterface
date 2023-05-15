@@ -585,7 +585,7 @@ public struct MemberDetails : Swift.Codable {
   public var familyHeadPointsShare: Swift.String?
   public var membershipStage: Swift.String?
   public var allSponsorFollower: Swift.Bool
-  public var hobbies: [Swift.String]
+  public var hobbies: [Swift.String?]
   public var token: Swift.String?
   public var expiresIn: Swift.String?
   public var allowFindingYou: Swift.String?
@@ -1333,6 +1333,8 @@ public struct OfferAction : Swift.Codable {
   public var thirdPartyMemberId: Swift.String?
   public var senderData: GravtySDK.TransferProfile?
   public var receiverData: GravtySDK.TransferProfile?
+  public var pendingDays: Swift.Double
+  public var pendingUUID: Swift.String?
   public init(from decoder: Swift.Decoder) throws
   public func encode(to encoder: Swift.Encoder) throws
 }
@@ -1360,6 +1362,7 @@ public struct BitResponse : Swift.Decodable {
   public var pointsRewarded: Swift.Bool?
   public var pointsRedeemed: Swift.Bool?
   public var status: Swift.String?
+  public var memberID: Swift.String?
   public init(from decoder: Swift.Decoder) throws
 }
 public struct CardRequestResponse : Swift.Decodable {
