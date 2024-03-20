@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
 // swift-module-flags: -target arm64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name GravtySDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Alamofire
@@ -15,6 +15,7 @@ import Swift
 import SwiftKeychainWrapper
 import _Concurrency
 import _StringProcessing
+import _SwiftConcurrencyShims
 public struct OfferPresentment : Swift.Decodable {
   public var id: Swift.Int
   public var offer: Swift.Int
@@ -24,7 +25,7 @@ public struct OfferPresentment : Swift.Decodable {
   public var imageUrl: Swift.String?
   public var headerHtml: Swift.String?
   public var detailHtml: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public enum SponsorDefaultBaseRatePolicy : Swift.String {
   case award
@@ -37,8 +38,8 @@ public enum SponsorDefaultBaseRatePolicy : Swift.String {
 }
 public struct MemberReferralResponse : Swift.Codable {
   public var data: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct CustomAttribute : Swift.Codable {
   public var id: Swift.String
@@ -50,20 +51,20 @@ public struct CustomAttribute : Swift.Codable {
   public func float() -> Swift.Float?
   public func double() -> Swift.Double?
   public func bool() -> Swift.Bool?
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct ExtraData : Swift.Codable {
   public var customAttributes: [GravtySDK.CustomAttribute]
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
   public func dictionaryRepresentation() -> [Swift.String : Any]
 }
 public struct PasswordStatus : Swift.Codable {
   public var exists: Swift.Bool
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct Product : Swift.Decodable {
   public var id: Swift.Int
@@ -76,7 +77,7 @@ public struct Product : Swift.Decodable {
   public var currencyName: Swift.String?
   public var extraData: GravtySDK.ExtraData?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct LookUp : Swift.Codable {
   public var id: Swift.Int
@@ -86,9 +87,33 @@ public struct LookUp : Swift.Codable {
   public var name: Swift.String?
   public var active: Swift.Bool
   public var nameLowercased: Swift.String?
+  public var localisations: [GravtySDK.LookUp.Localisation]?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public struct Localisation : Swift.Codable {
+    public let name: Swift.String?
+    public let localeCode: Swift.String?
+    public enum CodingKeys : Swift.String, Swift.CodingKey {
+      case name
+      case localeCode
+      public init?(rawValue: Swift.String)
+      public init?(stringValue: Swift.String)
+      public init?(intValue: Swift.Int)
+      public typealias RawValue = Swift.String
+      public var intValue: Swift.Int? {
+        get
+      }
+      public var rawValue: Swift.String {
+        get
+      }
+      public var stringValue: Swift.String {
+        get
+      }
+    }
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
 }
 @available(*, unavailable, renamed: "Sponsor")
 public struct PrimarySponsorData {
@@ -122,7 +147,7 @@ public struct Sponsor : Swift.Decodable {
   public var extraData: GravtySDK.ExtraData?
   public var nameLowercased: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public typealias GravtyResult<T> = Swift.Result<T, GravtySDK.GravtyError>
 public typealias GravtyPaginatedResult<T> = Swift.Result<GravtySDK.PaginatedResponse<T>, GravtySDK.GravtyError> where T : Swift.Decodable
@@ -133,29 +158,29 @@ public struct Region : Swift.Codable {
   public var country: Swift.Int
   public var countryName: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct LocationUrls : Swift.Decodable {
   public var locationUrls: [GravtySDK.CustomAttribute]
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
   public func dictionaryRepresentation() -> [Swift.String : Any]
 }
 public struct MemberStatus : Swift.Codable {
   public var exists: Swift.Bool
   public var validated: Swift.Bool
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct AppleStatus : Swift.Decodable {
   public var exists: Swift.Bool
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct SponsorStatisticsResponse : Swift.Decodable {
   public var sponsorsList: [GravtySDK.SponsorStatistics]
   public var totalCount: Swift.Int?
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct SponsorStatistics : Swift.Decodable {
   public var id: Swift.Int
@@ -163,13 +188,13 @@ public struct SponsorStatistics : Swift.Decodable {
   public var logo: Swift.String?
   public var businessDescription: Swift.String?
   public var memberEnrolled: Swift.Int
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct AppleLoginDetails : Swift.Codable {
   public var code: Swift.String
   public init(code: Swift.String, firstName _: Swift.String, lastName _: Swift.String, email _: Swift.String)
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct Offer : Swift.Decodable {
   public var id: Swift.Int
@@ -224,7 +249,7 @@ public struct Offer : Swift.Decodable {
   public var featuredRank: Swift.Int?
   public var tags: [Swift.String]
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct LocationOffer : Swift.Decodable {
   public var id: Swift.Int
@@ -236,7 +261,7 @@ public struct LocationOffer : Swift.Decodable {
   public var primarySponsor: Swift.String?
   public var templateParams: GravtySDK.OfferParams?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct BitHeader : Swift.Decodable {
   public var id: Swift.Int
@@ -258,18 +283,18 @@ public struct BitHeader : Swift.Decodable {
   public var comment: Swift.String?
   public var merchantName: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public enum GravtyError : Swift.Error {
   case imageMapping(Moya.Response)
   case jsonMapping(Moya.Response)
   case stringMapping(Moya.Response)
-  case objectMapping(Swift.Error, Moya.Response)
-  case encodableMapping(Swift.Error)
+  case objectMapping(any Swift.Error, Moya.Response)
+  case encodableMapping(any Swift.Error)
   case statusCode(GravtySDK.GravtyResponseError)
-  case underlying(Swift.Error, Moya.Response?)
+  case underlying(any Swift.Error, Moya.Response?)
   case requestMapping(Swift.String)
-  case parameterEncoding(Swift.Error)
+  case parameterEncoding(any Swift.Error)
   case gravtyErrorMapping(Moya.Response)
   case invalidToken
   public init(moyaError: Moya.MoyaError)
@@ -296,13 +321,13 @@ public struct LoyaltyBalance : Swift.Decodable {
   public var balanceNew: Swift.Float
   public var balanceOld: Swift.Float
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct GravtyTokenResponse : Swift.Codable {
   public let success: Swift.Bool
   public let token: Swift.String
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct FamilyInvite : Swift.Decodable {
   public var id: Swift.String?
@@ -318,7 +343,7 @@ public struct FamilyInvite : Swift.Decodable {
   public var familyHeadRelationship: Swift.String?
   public var createdTs: Swift.String?
   public var updatedTs: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct OfferId : Swift.Codable {
   public let id: Swift.Int
@@ -338,11 +363,11 @@ public struct OfferId : Swift.Codable {
       get
     }
   }
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public typealias RefreshClosure = (Swift.Result<Foundation.URLRequest, Moya.MoyaError>) -> Swift.Void
-public func url(_ route: Moya.TargetType) -> Swift.String
+public func url(_ route: any Moya.TargetType) -> Swift.String
 public enum BookingStatus : Swift.String {
   case booked
   case completed
@@ -393,8 +418,8 @@ public struct GravtyConfig : Swift.Codable {
   public var isTokenRefreshRequired: Swift.Bool
   public var apiLogsEnabled: Swift.Bool
   public var usev2Signup: Swift.Bool
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct SponsorMiniModel : Swift.Codable {
   public var id: Swift.Int?
@@ -402,8 +427,8 @@ public struct SponsorMiniModel : Swift.Codable {
   public var name: Swift.String?
   public var shortName: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct WishlistUpdateResponse : Swift.Decodable {
   public enum UpdateType {
@@ -430,7 +455,7 @@ public struct WishlistUpdateResponse : Swift.Decodable {
       get
     }
   }
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct SponsorLocation : Swift.Decodable {
   public var id: Swift.Int
@@ -454,15 +479,15 @@ public struct SponsorLocation : Swift.Decodable {
   public var extraData: GravtySDK.ExtraData?
   public var sponsorNameLowercased: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct Country : Swift.Codable {
   public var id: Swift.Int
   public var name: Swift.String?
   public var isoCode: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class Gravty : ObjectiveC.NSObject {
   public static let shared: GravtySDK.Gravty
@@ -498,8 +523,8 @@ public struct Country : Swift.Codable {
 }
 public struct UploadReceiptRequest : Swift.Codable {
   public init(receipt_number: Swift.String?, sponsor: Swift.Int, destination: Swift.String?, location: Swift.String?, transaction_date: Swift.String?, transaction_amount: Swift.Double?, receipt_image_urls: [Swift.String]?, currency: Swift.String?, member: Swift.String)
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 @available(*, unavailable, renamed: "MemberDetails")
 public struct MemberData {
@@ -593,8 +618,8 @@ public struct MemberDetails : Swift.Codable {
   public var lastActivityDate: Swift.String?
   public var lastRedemptionDate: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct ValidateMemberExtraData {
   public var attributeKey: Swift.String
@@ -608,21 +633,21 @@ public struct ValidateMemberExtraData {
 public struct SocialDelinkResponse : Swift.Codable {
   public var delinkStatus: Swift.Bool?
   public var logout: Swift.Bool?
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct S3ImageResponse : Swift.Codable {
   public var url: Swift.String?
   public var signedRequest: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct Payment : Swift.Decodable {
   public var id: Swift.String
   public var amount: Swift.Int
   public var method: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct SponsorDefaultRateResponse : Swift.Codable {
   public var id: Swift.Int?
@@ -634,8 +659,8 @@ public struct SponsorDefaultRateResponse : Swift.Codable {
   public var conversionValue: Swift.Int?
   public var currencyValue: Swift.Int?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct MemberBalance : Swift.Codable {
   public var memberId: Swift.String?
@@ -650,8 +675,8 @@ public struct MemberBalance : Swift.Codable {
   public var totalSent: Swift.Float?
   public var totalExpired: Swift.Float?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct User : Swift.Codable {
   public var memberId: Swift.String?
@@ -659,8 +684,8 @@ public struct User : Swift.Codable {
   public var firstName: Swift.String?
   public var lastName: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct ReceiptResponse : Swift.Codable {
   public var id: Swift.String?
@@ -685,14 +710,14 @@ public struct ReceiptResponse : Swift.Codable {
   public var updatedTs: Swift.String?
   public var versionCounter: Swift.Int?
   public init(id: Swift.String?, receiptNumber: Swift.String?, transactionAmount: Swift.Double?, currency: Swift.String?, transactionDate: Swift.String?, member: Swift.String?, sponsor: Swift.Int?, location: Swift.String?, receiptImageUrls: [Swift.String]?, bitReference: Swift.String?, process: Swift.String?, status: Swift.String?, rejectionReason: Swift.String?, sponsorName: Swift.String?, sponsorLogo: Swift.String?, sponsorShortName: Swift.String?, locationName: Swift.String?, destination: Swift.String?, createdTs: Swift.String?, updatedTs: Swift.String?)
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct FamilyMemberInviteResponse : Swift.Codable {
   public var status: Swift.String?
   public var accepted: Swift.Bool
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 @_hasMissingDesignatedInitializers open class CredentialsManager {
   public enum SessionType {
@@ -740,7 +765,7 @@ public struct ChangePasswordResponse : Swift.Decodable {
   public var token: Swift.String?
   public var expiresIn: Swift.String?
   public var status: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public typealias OptionalDictionary = [Swift.String : Any?]
 public struct GravtyErrorResponse : Swift.Codable, Swift.Error {
@@ -753,8 +778,8 @@ public struct GravtyErrorResponse : Swift.Codable, Swift.Error {
   public init(message: Swift.String?, code: Swift.String?)
   public init(field: Swift.String?, unsafeDictionary: GravtySDK.OptionalDictionary)
   public init(unsafeDictionary: GravtySDK.OptionalDictionary)
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct GravtyResponseError {
   public let errors: [GravtySDK.GravtyErrorResponse]
@@ -882,7 +907,7 @@ public struct RedemptionDetail : Swift.Decodable {
       get
     }
   }
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct CardAddRequest {
   public init(number: Swift.String, name: Swift.String, member: Swift.String)
@@ -901,7 +926,7 @@ public struct OfferBooking : Swift.Decodable {
   public var updatedTs: Swift.String?
   public var offerExtraData: GravtySDK.ExtraData?
   public var locationExtraData: GravtySDK.ExtraData?
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class DateUtils : ObjectiveC.NSObject {
   public static let shared: GravtySDK.DateUtils
@@ -913,7 +938,7 @@ public struct LocationTiming : Swift.Decodable {
   public var openTime: Swift.String?
   public var closeTime: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 @available(*, unavailable, renamed: "GravtyBit")
 public struct Transaction {
@@ -955,7 +980,7 @@ public struct GravtyBit : Swift.Decodable {
     set
   }
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 @available(*, unavailable, renamed: "PendingPointBalance")
 public struct PointBalance {
@@ -967,7 +992,7 @@ public struct PendingPointBalance : Swift.Decodable {
   public var availablePoints: Swift.Double
   public var pendingPoints: Swift.Double
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct MemberResponse : Swift.Codable {
   public var member: GravtySDK.MemberDetails?
@@ -975,8 +1000,8 @@ public struct MemberResponse : Swift.Codable {
   public var expiresIn: Swift.String?
   public var success: Swift.Bool
   public var error: GravtySDK.GravtyErrorResponse?
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 @_hasMissingDesignatedInitializers public class Utils {
   public static func isValidEmail(testStr: Swift.String) -> Swift.Bool
@@ -1005,7 +1030,7 @@ public struct Privilege : Swift.Decodable {
   public var status: Swift.String?
   public var cdc: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct MemberDetailsConcise : Swift.Codable {
   public var id: Swift.String?
@@ -1015,195 +1040,201 @@ public struct MemberDetailsConcise : Swift.Codable {
   public var middleName: Swift.String?
   public var memberName: Swift.String?
   public init(id: Swift.String?, profileImage: Swift.String?, firstName: Swift.String?, lastName: Swift.String?, middleName: Swift.String?, memberName: Swift.String?)
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 @_hasMissingDesignatedInitializers open class GravtyRequest {
   @discardableResult
-  public static func login(username: Swift.String, password: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func login(username: Swift.String, password: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func enrollMember<T>(memberData: T, type: GravtySDK.EnrollmentType = .normal, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberRegistrationStatus>) -> Swift.Void) -> Moya.Cancellable where T : Swift.Encodable
+  public static func enrollMember<T>(memberData: T, type: GravtySDK.EnrollmentType = .normal, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberRegistrationStatus>) -> Swift.Void) -> any Moya.Cancellable where T : Swift.Encodable
   @discardableResult
-  public static func enrollMemberV1<T>(memberData: T, type: GravtySDK.EnrollmentType = .normal, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberRegistrationStatusV1>) -> Swift.Void) -> Moya.Cancellable where T : Swift.Encodable
+  public static func enrollMemberV1<T>(memberData: T, type: GravtySDK.EnrollmentType = .normal, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberRegistrationStatusV1>) -> Swift.Void) -> any Moya.Cancellable where T : Swift.Encodable
   @discardableResult
-  public static func getMemberStatus(loginAttribute: Swift.String, username: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberStatus>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberStatus(loginAttribute: Swift.String, username: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberStatus>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberDetails(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberDetails>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberDetails(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberDetails>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberDetails(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberDetails>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberDetails(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberDetails>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberBalances(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberBalance]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberBalances(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberBalance]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberBalances(token: Swift.String? = nil, memberID: Swift.String, parameters: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberBalance]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberBalances(token: Swift.String? = nil, memberID: Swift.String, parameters: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberBalance]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getPointBalance(token: Swift.String? = nil, memberID: Swift.String, accountID: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.PendingPointBalance>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getPointBalance(token: Swift.String? = nil, memberID: Swift.String, accountID: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.PendingPointBalance>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func patchMember<T>(token: Swift.String? = nil, memberId: Swift.String, updateRequest: T, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberDetails>) -> Swift.Void) -> Moya.Cancellable? where T : Swift.Encodable
+  public static func patchMember<T>(token: Swift.String? = nil, memberId: Swift.String, updateRequest: T, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberDetails>) -> Swift.Void) -> (any Moya.Cancellable)? where T : Swift.Encodable
   @discardableResult
-  public static func enrollMemberFB(fbID: Swift.String, accessToken: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func enrollMemberFB(fbID: Swift.String, accessToken: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func authenticateMemberGoogle(googleID: Swift.String, idToken: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func authenticateMemberGoogle(googleID: Swift.String, idToken: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberStatusApple(appleId: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.AppleStatus>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberStatusApple(appleId: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.AppleStatus>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func authenticateMemberApple(details: GravtySDK.AppleLoginDetails, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func authenticateMemberApple(details: GravtySDK.AppleLoginDetails, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func linkFacebook(token: Swift.String? = nil, memberID: Swift.String, fbId: Swift.String, accessToken: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func linkFacebook(token: Swift.String? = nil, memberID: Swift.String, fbId: Swift.String, accessToken: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func linkApple(token: Swift.String? = nil, authorizationCode: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func linkApple(token: Swift.String? = nil, authorizationCode: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func delinkSocial(token: Swift.String? = nil, type: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.SocialDelinkResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func linkGoogle(token: Swift.String? = nil, googleToken: Swift.String, googleId: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getPasswordStatus(forLoginAttributeKey loginAttributeKey: Swift.String, loginAttributeValue: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.PasswordStatus>) -> Swift.Void) -> Moya.Cancellable?
+  public static func delinkSocial(token: Swift.String? = nil, type: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.SocialDelinkResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func setMemberPassword(password: Swift.String, otpToken: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.ChangePasswordResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getPasswordStatus(forLoginAttributeKey loginAttributeKey: Swift.String, loginAttributeValue: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.PasswordStatus>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func changePassword(token: Swift.String? = nil, oldPassword: Swift.String, newPassword: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.ChangePasswordResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func setMemberPassword(password: Swift.String, otpToken: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.ChangePasswordResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func resetPassword(request: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable
+  public static func changePassword(token: Swift.String? = nil, oldPassword: Swift.String, newPassword: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.ChangePasswordResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func doResetPassword(loginAttribute: Swift.String, username: Swift.String, password: Swift.String, resetKey: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func resetPassword(request: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> any Moya.Cancellable
   @discardableResult
-  public static func registerDevice(token: Swift.String? = nil, memberID: Swift.String, deviceID: Swift.String, platform: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func doResetPassword(loginAttribute: Swift.String, username: Swift.String, password: Swift.String, resetKey: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func deleteDevice(token: Swift.String? = nil, deviceID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func registerDevice(token: Swift.String? = nil, memberID: Swift.String, deviceID: Swift.String, platform: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func validateMember(memberId: Swift.String, otp: Swift.String, extraData: GravtySDK.ValidateMemberExtraData? = nil, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.GravtyTokenResponse>) -> Swift.Void) -> Moya.Cancellable
+  public static func deleteDevice(token: Swift.String? = nil, deviceID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func sendOtp(token: Swift.String? = nil, loginAttribute: Swift.String, username: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func validateMember(memberId: Swift.String, otp: Swift.String, extraData: GravtySDK.ValidateMemberExtraData? = nil, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.GravtyTokenResponse>) -> Swift.Void) -> any Moya.Cancellable
   @discardableResult
-  public static func generateOTPForService(service: GravtySDK.OTPServiceType, token: Swift.String? = nil, memberId: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func sendOtp(token: Swift.String? = nil, loginAttribute: Swift.String, username: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func validateOTP(service: GravtySDK.OTPServiceType, token: Swift.String? = nil, memberId: Swift.String, otp: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func generateOTPForService(service: GravtySDK.OTPServiceType, token: Swift.String? = nil, memberId: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberCards(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.CardDetails]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func validateOTP(service: GravtySDK.OTPServiceType, token: Swift.String? = nil, memberId: Swift.String, otp: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func addMemberCard(token: Swift.String? = nil, addRequest: GravtySDK.CardAddRequest, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.CardDetails>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberCards(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.CardDetails]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func cancelMemberCard(token: Swift.String? = nil, cardID: Swift.Int, cancelRequest: GravtySDK.CardCancelRequest, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.CardRequestResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func addMemberCard(token: Swift.String? = nil, addRequest: GravtySDK.CardAddRequest, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.CardDetails>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberPrivileges(token: Swift.String? = nil, memberId: Swift.String, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Promotion]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func cancelMemberCard(token: Swift.String? = nil, cardID: Swift.Int, cancelRequest: GravtySDK.CardCancelRequest, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.CardRequestResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getPrivilege(token: Swift.String? = nil, memberId: Swift.String, privilegeCode: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.Promotion>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberPrivileges(token: Swift.String? = nil, memberId: Swift.String, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Promotion]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberPrivileges(token: Swift.String? = nil, fromCursor cursor: Swift.String, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Promotion]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getPrivilege(token: Swift.String? = nil, memberId: Swift.String, privilegeCode: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.Promotion>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getOffers(token: Swift.String? = nil, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberPrivileges(token: Swift.String? = nil, fromCursor cursor: Swift.String, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Promotion]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getOffers(token: Swift.String? = nil, parameters: [Swift.String : Any], pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getOffers(token: Swift.String? = nil, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getOffers(token: Swift.String? = nil, location: CoreLocation.CLLocationCoordinate2D, radius: Swift.Double? = nil, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getOffers(token: Swift.String? = nil, parameters: [Swift.String : Any], pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getOffers(token: Swift.String? = nil, category: Swift.String, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getOffers(token: Swift.String? = nil, location: CoreLocation.CLLocationCoordinate2D, radius: Swift.Double? = nil, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getOffers(token: Swift.String? = nil, locationCode: Swift.String, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getOffers(token: Swift.String? = nil, category: Swift.String, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getFavoriteOffers(token: Swift.String? = nil, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getOffers(token: Swift.String? = nil, locationCode: Swift.String, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getOffersFromCursor(token: Swift.String? = nil, cursor: Swift.String, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getFavoriteOffers(token: Swift.String? = nil, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getOffer(token: Swift.String? = nil, id: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.Offer>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getOffersFromCursor(token: Swift.String? = nil, cursor: Swift.String, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Offer]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func acceptOffer(token: Swift.String? = nil, offerId: Swift.Int, accept: Swift.Bool, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getOffer(token: Swift.String? = nil, id: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.Offer>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func rateOffer(token: Swift.String? = nil, withID: Swift.Int, rating: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func acceptOffer(token: Swift.String? = nil, offerId: Swift.Int, accept: Swift.Bool, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberActionDataForOffer(token: Swift.String? = nil, withID: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberAction>) -> Swift.Void) -> Moya.Cancellable?
+  public static func rateOffer(token: Swift.String? = nil, withID: Swift.Int, rating: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getPresentmentForOffer(token: Swift.String? = nil, withID: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.OfferPresentment>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getMemberActionDataForOffer(token: Swift.String? = nil, withID: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberAction>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func createOfferBooking(token: Swift.String? = nil, memberID: Swift.String, status: GravtySDK.BookingStatus, offerID: Swift.Int, locationCode: Swift.String, startTime: Swift.String, endTime: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.OfferBooking>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getPresentmentForOffer(token: Swift.String? = nil, withID: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.OfferPresentment>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getOfferBookings(token: Swift.String? = nil, memberID: Swift.String, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.OfferBooking]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func createOfferBooking(token: Swift.String? = nil, memberID: Swift.String, status: GravtySDK.BookingStatus, offerID: Swift.Int, locationCode: Swift.String, startTime: Swift.String, endTime: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.OfferBooking>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func updateOfferBooking(token: Swift.String? = nil, memberID: Swift.String, bookingID: Swift.Int, status: GravtySDK.BookingStatus, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.OfferBooking>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getOfferBookings(token: Swift.String? = nil, memberID: Swift.String, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.OfferBooking]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getSponsor(token: Swift.String? = nil, id: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.Sponsor>) -> Swift.Void) -> Moya.Cancellable?
+  public static func updateOfferBooking(token: Swift.String? = nil, memberID: Swift.String, bookingID: Swift.Int, status: GravtySDK.BookingStatus, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.OfferBooking>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getSponsors(token: Swift.String? = nil, parameters: [Swift.String : Any] = [:], pageSize: Swift.Int = 50, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Sponsor]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getSponsor(token: Swift.String? = nil, id: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.Sponsor>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getSponsorsFrom(token: Swift.String? = nil, cursor: Swift.String, parameters: [Swift.String : Any] = [:], pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Sponsor]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getSponsors(token: Swift.String? = nil, parameters: [Swift.String : Any] = [:], pageSize: Swift.Int = 50, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Sponsor]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getSponsorLocations(token: Swift.String? = nil, sponserId: Swift.Int, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, parameters: [Swift.String : Any] = [:], completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.SponsorLocation]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getSponsorsFrom(token: Swift.String? = nil, cursor: Swift.String, parameters: [Swift.String : Any] = [:], pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.Sponsor]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getSponsorLocations(token: Swift.String? = nil, parameters: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.SponsorLocation]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getSponsorLocations(token: Swift.String? = nil, sponserId: Swift.Int, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, parameters: [Swift.String : Any] = [:], completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.SponsorLocation]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getLocationBasedOffers<T>(token: Swift.String? = nil, request: T, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.SponsorLocation]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getSponsorLocations(token: Swift.String? = nil, parameters: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.SponsorLocation]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getBITs(token: Swift.String? = nil, memberID: Swift.String, bitCategory: Swift.String = "", bitType: Swift.String = "", pageSize: Swift.Int = Gravty.shared.defaultPageLimit, dateFrom: Swift.String? = nil, dateTo: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.GravtyBit]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getLocationBasedOffers<T>(token: Swift.String? = nil, request: T, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.SponsorLocation]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getBITs(token: Swift.String? = nil, memberID: Swift.String, parameters: [Swift.String : Any], pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.GravtyBit]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getBITs(token: Swift.String? = nil, memberID: Swift.String, bitCategory: Swift.String = "", bitType: Swift.String = "", pageSize: Swift.Int = Gravty.shared.defaultPageLimit, dateFrom: Swift.String? = nil, dateTo: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.GravtyBit]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getBITsFromCursor(token: Swift.String? = nil, cursor: Swift.String, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.GravtyBit]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getBITs(token: Swift.String? = nil, memberID: Swift.String, parameters: [Swift.String : Any], pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.GravtyBit]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getAccrualDetailsFromBitID(token: Swift.String? = nil, bitId: Swift.Int, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.AccrualDetail]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getBITsFromCursor(token: Swift.String? = nil, cursor: Swift.String, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.GravtyBit]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func performTransaction<T>(token: Swift.String? = nil, request: T, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.BitResponse>) -> Swift.Void) -> Moya.Cancellable? where T : Swift.Encodable
+  public static func getAccrualDetailsFromBitID(token: Swift.String? = nil, bitId: Swift.Int, pageSize: Swift.Int = Gravty.shared.defaultPageLimit, completion: @escaping (GravtySDK.GravtyPaginatedResult<[GravtySDK.AccrualDetail]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func performPointTransfer(token: Swift.String? = nil, senderID: Swift.String, recipientID: Swift.String, transferAmount: Swift.Double, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.BitResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func performTransaction<T>(token: Swift.String? = nil, request: T, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.BitResponse>) -> Swift.Void) -> (any Moya.Cancellable)? where T : Swift.Encodable
   @discardableResult
-  public static func verifyMerchantPin(token: Swift.String? = nil, sponsorId: Swift.Int, pin: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func performPointTransfer(token: Swift.String? = nil, senderID: Swift.String, recipientID: Swift.String, transferAmount: Swift.Double, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.BitResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getLoginAttribute(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.LoginAttribute>) -> Swift.Void) -> Moya.Cancellable?
+  public static func verifyMerchantPin(token: Swift.String? = nil, sponsorId: Swift.Int, pin: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getLookUps(token: Swift.String? = nil, for type: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.LookUp]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getLoginAttribute(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.LoginAttribute>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getAllLookUps(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.LookUp]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getLookUps(token: Swift.String? = nil, for type: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.LookUp]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getBalanceTagNames(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.BalanceTag]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getAllLookUps(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.LookUp]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getRegion(token: Swift.String? = nil, country: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Region]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getBalanceTagNames(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.BalanceTag]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func fetchRegion(token: Swift.String? = nil, countryCode: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Region]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getRegion(token: Swift.String? = nil, country: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Region]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getCountries(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Country]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func fetchRegion(token: Swift.String? = nil, countryCode: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Region]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getS3ImageUploadURL(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.S3ImageResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getCountries(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Country]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getS3ImageUploadReceiptURL(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.S3ImageResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getS3ImageUploadURL(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.S3ImageResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getFamilySummary(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilySummary>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getS3ImageUploadReceiptURL(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.S3ImageResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getFamilyMembers(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberDetails]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getFamilySummary(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilySummary>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func createFamilyInvite(token: Swift.String? = nil, memberID: Swift.String, inviteeEmail: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyInvite>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getFamilyMembers(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberDetails]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func createFamilyInvite(token: Swift.String? = nil, memberID: Swift.String, inviteeMobile: Swift.String, inviteeGivenName: Swift.String, familyHeadRelationship: Swift.String, inviterName: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyInvite>) -> Swift.Void) -> Moya.Cancellable?
+  public static func createFamilyInvite(token: Swift.String? = nil, memberID: Swift.String, inviteeEmail: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyInvite>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func createFamilyInviteByMinor(token: Swift.String? = nil, memberID: Swift.String, inviteeEmail: Swift.String, inviteeDOB: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyInvite>) -> Swift.Void) -> Moya.Cancellable?
+  public static func createFamilyInvite(token: Swift.String? = nil, memberID: Swift.String, inviteeMobile: Swift.String, inviteeGivenName: Swift.String, familyHeadRelationship: Swift.String, inviterName: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyInvite>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getAllFamilyInvites(token: Swift.String? = nil, memberID: Swift.String, onlyReceived: Swift.Bool = false, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.FamilyInvite]>) -> Swift.Void) -> Moya.Cancellable?
-  public static func retreiveFamilyMemberInvite(token: Swift.String? = nil, memberID: Swift.String, invitationID: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyInvite>) -> Swift.Void) -> Moya.Cancellable?
+  public static func createFamilyInviteByMinor(token: Swift.String? = nil, memberID: Swift.String, inviteeEmail: Swift.String, inviteeDOB: Swift.String, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyInvite>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func familyMemberInviteAction(token: Swift.String? = nil, memberID: Swift.String, invitationID: Swift.Int, accepted: Swift.Bool, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyMemberInviteResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getAllFamilyInvites(token: Swift.String? = nil, memberID: Swift.String, onlyReceived: Swift.Bool = false, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.FamilyInvite]>) -> Swift.Void) -> (any Moya.Cancellable)?
+  public static func retreiveFamilyMemberInvite(token: Swift.String? = nil, memberID: Swift.String, invitationID: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyInvite>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func deleteFamily(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func familyMemberInviteAction(token: Swift.String? = nil, memberID: Swift.String, invitationID: Swift.Int, accepted: Swift.Bool, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.FamilyMemberInviteResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func leaveFamily(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> Moya.Cancellable?
+  public static func deleteFamily(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func addToWishList(token: Swift.String? = nil, memberId: Swift.String, offerIds: [Swift.Int], _ completion: @escaping (GravtySDK.GravtyResult<GravtySDK.WishlistUpdateResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func leaveFamily(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<Swift.Void>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func removeFromWishList(token: Swift.String? = nil, memberId: Swift.String, offerIds: [Swift.Int], _ completion: @escaping (GravtySDK.GravtyResult<GravtySDK.WishlistUpdateResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func addToWishList(token: Swift.String? = nil, memberId: Swift.String, offerIds: [Swift.Int], _ completion: @escaping (GravtySDK.GravtyResult<GravtySDK.WishlistUpdateResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getWishlist(token: Swift.String? = nil, memberId: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Offer]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func removeFromWishList(token: Swift.String? = nil, memberId: Swift.String, offerIds: [Swift.Int], _ completion: @escaping (GravtySDK.GravtyResult<GravtySDK.WishlistUpdateResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func memberReferral<T>(token: Swift.String? = nil, request: T, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberReferralResponse>) -> Swift.Void) -> Moya.Cancellable? where T : Swift.Encodable
+  public static func getWishlist(token: Swift.String? = nil, memberId: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.Offer]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getSponsorBaseRate(token: Swift.String? = nil, sponsorId: Swift.Int, loyaltyAccount: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.SponsorBaseRateResponse]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func memberReferral<T>(token: Swift.String? = nil, request: T, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberReferralResponse>) -> Swift.Void) -> (any Moya.Cancellable)? where T : Swift.Encodable
   @discardableResult
-  public static func getSponsorDefaultBaseRate(token: Swift.String? = nil, policyType: GravtySDK.SponsorDefaultBaseRatePolicy, loyaltyAccount: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.SponsorDefaultRateResponse]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getSponsorBaseRate(token: Swift.String? = nil, sponsorId: Swift.Int, loyaltyAccount: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.SponsorBaseRateResponse]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getCities(regionId: Swift.Int, search: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.GetCitiesResponse]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getSponsorDefaultBaseRate(token: Swift.String? = nil, policyType: GravtySDK.SponsorDefaultBaseRatePolicy, loyaltyAccount: Swift.Int, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.SponsorDefaultRateResponse]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getReceipts(params: [Swift.String : Any], token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.ReceiptResponse]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getCities(regionId: Swift.Int, search: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.GetCitiesResponse]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getSponsorConfigs(token: Swift.String? = nil, parameters: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.SponsorConfigResponse]>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getReceipts(params: [Swift.String : Any], token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.ReceiptResponse]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func uploadReciept(token: Swift.String? = nil, request: GravtySDK.UploadReceiptRequest, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.ReceiptResponse>) -> Swift.Void) -> Moya.Cancellable?
+  public static func getSponsorConfigs(token: Swift.String? = nil, parameters: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.SponsorConfigResponse]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func lookupMember(token: Swift.String? = nil, params: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberDetailsConcise>) -> Swift.Void) -> Moya.Cancellable?
+  public static func uploadReciept(token: Swift.String? = nil, request: GravtySDK.UploadReceiptRequest, completion: @escaping (GravtySDK.GravtyResult<GravtySDK.ReceiptResponse>) -> Swift.Void) -> (any Moya.Cancellable)?
   @discardableResult
-  public static func getMemberOffers<T>(token: Swift.String? = nil, memberID: Swift.String, request: T, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberOffer]>) -> Swift.Void) -> Moya.Cancellable? where T : Swift.Encodable
+  public static func lookupMember(token: Swift.String? = nil, params: [Swift.String : Any], completion: @escaping (GravtySDK.GravtyResult<GravtySDK.MemberDetailsConcise>) -> Swift.Void) -> (any Moya.Cancellable)?
+  @discardableResult
+  public static func getMemberOffers<T>(token: Swift.String? = nil, memberID: Swift.String, request: T, completion: @escaping (GravtySDK.GravtyResult<[GravtySDK.MemberOffer]>) -> Swift.Void) -> (any Moya.Cancellable)? where T : Swift.Encodable
+  @discardableResult
+  public static func logout(token: Swift.String? = nil, completion: @escaping (GravtySDK.GravtyResult<[Swift.String : Swift.String]>) -> Swift.Void) -> (any Moya.Cancellable)?
+  @discardableResult
+  public static func getMobilePass(token: Swift.String? = nil, memberID: Swift.String, completion: @escaping (GravtySDK.GravtyResult<[Swift.String : Swift.String]>) -> Swift.Void) -> (any Moya.Cancellable)?
   @objc deinit
 }
 public enum GravtyRequestError : Swift.Error {
@@ -1272,12 +1303,12 @@ public enum LoginStatus {
 }
 public enum LoginError : Swift.Error {
   case invalidCredential
-  case unknown(underlying: Swift.Error)
+  case unknown(underlying: any Swift.Error)
 }
 public enum ReLoginStatus : Swift.Decodable {
   case notRequired, internalFailure
   case success(memberResponse: GravtySDK.MemberResponse)
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public enum PatchMemberResult {
   case success(memberDetails: GravtySDK.MemberDetails?)
@@ -1294,22 +1325,32 @@ public struct SponsorBaseRateResponse : Swift.Codable {
   public var endDate: Swift.String?
   public var versionCounter: Swift.Int?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct ExternalPrivilegeResponse : Swift.Decodable {
   public var giftcardUrl: Swift.String?
   public var giftcardNumber: Swift.String?
   public var voucherNumber: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ProductChoice : Swift.Codable {
+  public let productId: Swift.Int?, sponsor: Swift.Int?, totalCount: Swift.Int?
+  public let privilegeValidity: Swift.String?
+  public let productChoosenInBit: Swift.String?, productChoosenDate: Swift.String?
+  public let productChoosen: Swift.Bool?
+  public let validityInterval: Swift.Int?, validityIntervalField: Swift.Int?
+  public let validFrom: Swift.String?, validTill: Swift.String?, privilegeCode: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct MemberAction : Swift.Decodable {
   public var offerId: Swift.Int
   public var accepted: Swift.Bool
   public var rating: Swift.Int
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct OfferAction : Swift.Codable {
   public var offerDesktopImage: Swift.String?
@@ -1335,16 +1376,16 @@ public struct OfferAction : Swift.Codable {
   public var receiverData: GravtySDK.TransferProfile?
   public var pendingDays: Swift.Double
   public var pendingUUID: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct TransferProfile : Swift.Codable {
   public var firstName: Swift.String?
   public var lastName: Swift.String?
   public var profileImage: Swift.String?
   public var memberId: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 @available(*, unavailable, renamed: "BitResponse")
 public struct TransactionResponse {
@@ -1363,22 +1404,22 @@ public struct BitResponse : Swift.Decodable {
   public var pointsRedeemed: Swift.Bool?
   public var status: Swift.String?
   public var memberID: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct CardRequestResponse : Swift.Decodable {
   public var data: Swift.String?
   public var error: GravtySDK.GravtyErrorResponse?
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct CardAddError : Swift.Decodable {
   public var number: [GravtySDK.GravtyErrorResponse]
   public var member: [GravtySDK.GravtyErrorResponse]
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct FamilySummary : Swift.Decodable {
   public var size: Swift.Int
   public var head: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct BalanceTag : Swift.Codable {
   public var id: Swift.Int?
@@ -1394,8 +1435,8 @@ public struct BalanceTag : Swift.Codable {
   public var postpaidBillingRate: Swift.Float?
   public var loyaltyAccount: Swift.Int?
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 @_hasMissingDesignatedInitializers @available(*, unavailable, renamed: "LocationCompact")
 public class Location {
@@ -1410,7 +1451,7 @@ public struct LocationCompact : Swift.Decodable {
   public var image: Swift.String?
   public var address: Swift.String?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct JSONCodingKeys : Swift.CodingKey {
   public var stringValue: Swift.String
@@ -1454,7 +1495,7 @@ public struct CardDetails : Swift.Decodable {
   public var memberData: GravtySDK.MemberDetails?
   public var error: GravtySDK.CardAddError?
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public typealias WrappedDictionary = [Swift.String : Any]
 public func wrap<T>(_ object: T, context: Any? = nil, dateFormatter: Foundation.DateFormatter? = nil) throws -> GravtySDK.WrappedDictionary
@@ -1570,8 +1611,8 @@ public struct GetCitiesResponse : Swift.Codable {
       get
     }
   }
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct Promotion : Swift.Decodable {
   public var memberId: Swift.String?
@@ -1588,6 +1629,8 @@ public struct Promotion : Swift.Decodable {
   public var productAwardPrice: Swift.String?
   public var productId: Swift.Int
   public var validTill: Foundation.Date?
+  public var validTillStr: Swift.String?
+  public var usageDateStr: Swift.String?
   public var availmentCount: Swift.String?
   public var startDate: Swift.String?
   public var cdc: Swift.String?
@@ -1611,18 +1654,20 @@ public struct Promotion : Swift.Decodable {
   public var externalPrivilegeResponse: GravtySDK.ExternalPrivilegeResponse?
   public var offerExtraData: GravtySDK.ExtraData?
   public var extraData: GravtySDK.ExtraData?
+  public var privilegeType: Swift.String?
+  public var selectedProductsList: [GravtySDK.ProductChoice]
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct CategoryStatisticsResponse : Swift.Decodable {
   public var categoriesList: [GravtySDK.CategoryStatistics]
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct CategoryStatistics : Swift.Decodable {
   public var name: Swift.String?
   public var code: Swift.String?
   public var sponsorsCount: Swift.Int
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct SponsorConfigResponse : Swift.Codable {
   public var id: Swift.Int?
@@ -1630,8 +1675,8 @@ public struct SponsorConfigResponse : Swift.Codable {
   public var partneredSponsor: Swift.Bool?
   public var scannableReceipts: Swift.Bool?
   public init(id: Swift.Int?, sponsor: Swift.Int?, partneredSponsor: Swift.Bool?, scannableReceipts: Swift.Bool?)
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct MemberOffer : Swift.Codable {
   public var memberID: Swift.String?
@@ -1642,8 +1687,8 @@ public struct MemberOffer : Swift.Codable {
   public var updated: Swift.Bool?
   public var notTargeted: Swift.Bool?
   public init(memberID: Swift.String? = nil, offerID: Swift.Int? = nil, userResponse: Swift.String? = nil, availmentCount: Swift.Int? = nil, mToMap: [Swift.String : Swift.String] = [:], updated: Swift.Bool? = nil, notTargeted: Swift.Bool? = nil)
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct AccrualDetail : Swift.Decodable {
   public var id: Swift.Int
@@ -1705,7 +1750,7 @@ public struct AccrualDetail : Swift.Decodable {
       get
     }
   }
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 @available(*, unavailable, renamed: "OfferParams")
 public struct OfferDetails {
@@ -1721,12 +1766,12 @@ public struct OfferParams : Swift.Decodable {
   public var rewardBonus: Swift.String?
   public var offerId: Swift.Int
   public init()
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct LoginAttribute : Swift.Codable {
   public var attribute: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct PointsExpiration : Swift.Codable {
   public var id: Swift.String
@@ -1736,12 +1781,15 @@ public struct PointsExpiration : Swift.Codable {
   public var expirationDate: Swift.String?
   public var points: Swift.Float
   public init()
-  public init(from decoder: Swift.Decoder) throws
-  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 extension GravtySDK.SponsorDefaultBaseRatePolicy : Swift.Equatable {}
 extension GravtySDK.SponsorDefaultBaseRatePolicy : Swift.Hashable {}
 extension GravtySDK.SponsorDefaultBaseRatePolicy : Swift.RawRepresentable {}
+extension GravtySDK.LookUp.Localisation.CodingKeys : Swift.Equatable {}
+extension GravtySDK.LookUp.Localisation.CodingKeys : Swift.Hashable {}
+extension GravtySDK.LookUp.Localisation.CodingKeys : Swift.RawRepresentable {}
 extension GravtySDK.OfferId.CodingKeys : Swift.Equatable {}
 extension GravtySDK.OfferId.CodingKeys : Swift.Hashable {}
 extension GravtySDK.OfferId.CodingKeys : Swift.RawRepresentable {}
